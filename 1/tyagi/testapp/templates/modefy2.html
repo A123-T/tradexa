@@ -1,0 +1,66 @@
+{% block body %}
+{% load static %}
+
+
+<html>
+<head>	
+<title>	Modefied__form</title>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+<body>
+<div class="main">
+<div class="register"> 
+<h2>{{nam}}</h2>
+<fieldset>
+
+<h4 align="center ">
+{% if messages %}
+{% for message in messages %}
+    <b {% if message.tags %} class="{{message.tags}}"{% endif %}>{{message}}</b>
+{% endfor %}
+{% endif %}
+{% if form.non_field_errors %}
+ {% for error in form.non_field_errors %}
+    {{error}}
+ {% endfor %}
+{% endif %}
+</h4>
+</fieldset>
+<hr>
+<br>
+</fieldset>
+<form action=""  id="register"  method="post" novalidate>
+{% csrf_token %}
+{% if fm %}<h3>
+name </h3> <input type="text" value={{fm.name}} id="id_username" name="name"><br>
+       <h3>  price </h3>  <input type="text" value={{fm.price}} id="id_username" name="price"><br>
+        <h3> weight </h3>  <input type="text" value={{fm.weight}} id="id_username" name="weight"><br>
+
+
+<input type="submit" value="submit" id="submit" name="submit">
+<br><br>
+{% endif %}
+Not have an account?<a href="{% url 'register' %}"">  Signin Here</a>
+</form>
+</div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock body%}
